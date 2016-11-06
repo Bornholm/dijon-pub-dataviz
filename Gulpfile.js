@@ -2,17 +2,21 @@ const usemin = require('gulp-usemin');
 const uglify = require('gulp-uglify');
 const minifyHtml = require('gulp-minify-html');
 const minifyCss = require('gulp-minify-css');
-const rev = require('gulp-rev');
 const gulp = require('gulp');
+const del = require('del');
 
-gulp.task('default', () => {
+gulp.task('clean', () => del(['docs/*']));
+
+gulp.task('build', () => {
   return gulp.src('./*.html')
     .pipe(usemin({
-      css: [ rev() ],
+      css: [ minifyCss() ],
       html: [ minifyHtml({ empty: true }) ],
-      js: [ uglify(), rev() ],
+      js: [ uglify() ],
       inlinejs: [ uglify() ],
       inlinecss: [ minifyCss(), 'concat' ]
     }))
     .pipe(gulp.dest('docs/'));
 });
+
+gulp.task('default', ['clean', 'build'])

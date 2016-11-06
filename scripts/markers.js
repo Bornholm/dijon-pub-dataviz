@@ -2,7 +2,7 @@
 
   var clusterLayer;
   var overpassQuery = $('#overpass-query').text();
-  var overpassUrl = 'http://api.openstreetmap.fr/oapi/interpreter?data=' + encodeURIComponent(overpassQuery);
+  var overpassUrl = 'https://api.openstreetmap.fr/oapi/interpreter?data=' + encodeURIComponent(overpassQuery);
 
   //Pub.Map.addLayer(cluster);
 
