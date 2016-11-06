@@ -1,0 +1,25 @@
+{
+  "name": "dijon-pub-dataviz",
+  "authors": [
+    "William Petit <william.petit@ptitcloud.fr>"
+  ],
+  "description": "Visualisation de l'implantation de la publicité dans les rues de Dijon via les données OpenStreetMap",
+  "main": "index.html",
+  "license": "AGPL-3.0",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "c3": "^0.4.11",
+    "leaflet.markercluster": "^1.0.0",
+    "leaflet": "^1.0.1",
+    "lodash": "^4.16.6"
+  }
+}

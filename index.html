@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <title>Grand Dijon - Référencement participatif de la publicité</title>
+    <!-- build:css style.css -->
+    <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="bower_components/c3/c3.css" />
+    <link rel="stylesheet" href="bower_components/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <!-- endbuild -->
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Grand Dijon - Référencement participatif de la publicité</h1>
+          <h2>Le contexte</h2>
+          <p>La commune de Dijon prévoit de revoir le <a href="http://vosdroits.service-public.fr/professionnels-entreprises/F24478.xhtml">Règlement Local de Publicité (RLP)</a>; celui-ci permet de déterminer, dans des zones définies, des règles pour l'implantation de panneaux publicitaires plus restrictives que la réglementation nationale.</p>
+          <p>Le RLP, à l'initiative du maire de la commune, doit être conforme au plan local d'urbanisme (PLU) auquel il est annexé. Après une délibération prescrivant un RLP, une concertation publique a lieu entre les acteurs concernés. Une fois le projet arrêté, une enquête publique doit être menée. Le RLP doit ensuite être approuvé et rendu public (par voie d'affichage, notamment).</p>
+          <p>Dans le cadre de la refonte du RLP, la mairie de Dijon a commandé une étude-diagnostic des panneaux publicitaires implantés à Dijon, ce qui permettra d'obtenir un état des lieux précis de la situation.</p>
+          <p>Les associations <a href="#coagul">COAGUL</a> et <a href="#dijonecolo">les Amis de la Terre Côte-d'Or</a> co-organisent un <strong>audit participatif de la présence publicitaire dans la ville de Dijon</strong>.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <h2>La carte <small>Panneaux recensés: <span id="totalCount">--</span></small></h2>
+          <div id="map" style="height: 600px"></div>
+        </div>
+      </div>
+
+      <div id="stats" class="row">
+        <div class="col-md-12">
+          <h2>Les données</h2>
+          <form role="form">
+
+            <div class="row">
+              <div class="col-md-6">
+                <h4>Types des panneaux</h4>
+                <div id="types-chart"><em>Chargement en cours...</em></div>
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover table-condensed" id="advertising">
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <h4>Opérateurs de publicité</h4>
+                <div id="operators-chart"><em>Chargement en cours...</em></div>
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover table-condensed" id="operators">
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3 col-md-offset-3 col-sm-6 col-xs-6">
+          <a id="coagul" href="http://coagul.org/"><img class="img-responsive" src="http://coagul.org/drupal/sites/all/themes/coagul1/logo.png"></a>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-6">
+          <a id="dijonecolo" href="http://dijon-ecolo.fr/"><img class="img-responsive" src="http://dijon-ecolo.fr/logo-dijon-ecolo.gif"></a>
+        </div>
+      </div>
+
+    </div>
+
+    <script id="overpass-query" type="text/x-overpass-query">
+      <osm-script output="json">
+        <union>
+          <query type="node">
+            <has-kv k="advertising" v=""/>
+            <bbox-query e="5.205116271972656" n="47.41136166853917" s="47.2053421258966" w="4.888572692871094"/>
+          </query>
+          <query type="way">
+            <has-kv k="advertising" v=""/>
+            <bbox-query e="5.205116271972656" n="47.41136166853917" s="47.2053421258966" w="4.888572692871094"/>
+          </query>
+          <query type="relation">
+            <has-kv k="advertising" v=""/>
+            <bbox-query e="5.205116271972656" n="47.41136166853917" s="47.2053421258966" w="4.888572692871094"/>
+          </query>
+        </union>
+        <print mode="body"/>
+        <recurse type="down"/>
+        <print mode="skeleton"/>
+      </osm-script>
+    </script>
+
+    <!-- build:js app.js -->
+    <script src="bower_components/leaflet/dist/leaflet.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="scripts/map.js"></script>
+    <script src="bower_components/lodash/dist/lodash.min.js"></script>
+    <script src="bower_components/d3/d3.min.js"></script>
+    <script src="bower_components/c3/c3.min.js"></script>
+    <script src="bower_components/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <script src="scripts/markers.js"></script>
+    <!-- endbuild -->
+
+  </body>
+</html>
