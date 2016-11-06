@@ -4,10 +4,17 @@ const minifyHtml = require('gulp-minify-html');
 const minifyCss = require('gulp-minify-css');
 const gulp = require('gulp');
 const del = require('del');
+const runSequence = require('run-sequence');
 
-gulp.task('clean', () => del(['docs/*']));
+gulp.task('docs:clean', () => del(['docs/*']));
 
-gulp.task('build', () => {
+gulp.task('resources:copy', () => {
+  return gulp.src('bower_components/leaflet/dist/images/*')
+    .pipe(gulp.dest('docs/images'))
+  ;
+});
+
+gulp.task('html:compress', () => {
   return gulp.src('./*.html')
     .pipe(usemin({
       css: [ minifyCss() ],
@@ -19,4 +26,6 @@ gulp.task('build', () => {
     .pipe(gulp.dest('docs/'));
 });
 
-gulp.task('default', ['clean', 'build'])
+gulp.task('build', cb => runSequence('docs:clean', ['resources:copy', 'html:compress'], cb))
+
+gulp.task('default', ['build'])
