@@ -14,5 +14,5 @@ gulp.task('default', () => {
       inlinejs: [ uglify() ],
       inlinecss: [ minifyCss(), 'concat' ]
     }))
-    .pipe(gulp.dest('build/'));
+    .pipe(gulp.dest('docs/'));
 });
