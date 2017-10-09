@@ -2,7 +2,7 @@
 
   var markersLayer;
   var overpassQuery = $('#overpass-query').text();
-  var overpassUrl = 'https://api.openstreetmap.fr/oapi/interpreter?data=' + encodeURIComponent(overpassQuery);
+  var overpassUrl = 'http://api.openstreetmap.fr/api/interpreter?data=' + encodeURIComponent(overpassQuery);
 
   updateMarkers();
 
